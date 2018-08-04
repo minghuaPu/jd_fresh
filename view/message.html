@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>提醒跳转</title>
+</head>
+<body>
+
+	{$msg}
+	<br>
+	<b id="s"></b>秒后自动跳转
+	<a href="{$url}">手工跳转</a>
+
+	<script type="text/javascript">
+		setInterval(tiaoz,1000)
+		var n = 3;
+				document.querySelector('#s').innerHTML = n
+		
+		function tiaoz() {
+			if (n>0) {
+				document.querySelector('#s').innerHTML = n
+			}else{
+				location.href = "{$url}"
+			}
+			--n
+		}
+	</script>
+</body>
+</html>

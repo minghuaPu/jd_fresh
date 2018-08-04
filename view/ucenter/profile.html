@@ -1,0 +1,71 @@
+{include file="head.html"}
+<style type="text/css">
+	.hobby_box li{ border: 2px solid white; margin: 10px;list-style: none; }
+	.hobby_box li.choise{ border: 2px solid red ;}
+
+</style>
+<div class="container">
+	<div class="col-md-3">{include file="ucenter/menu.html"}</div>
+	<div class="col-md-9">
+		用户资料
+		<form action="{url('ucenter','doProfile')}" class="form" method="post">
+			<div class="from-group">
+				<label >昵称</label>
+				<input name="nick_name"  v-model="info.nick_name" type="text" class="form-control"></div>
+			<div class="from-group">
+				<label>性别</label>
+				<label for="">
+
+					<input type="radio" v-model="info.sex" name="sex" value="1"></label>
+				男
+				<label for="">
+
+					<input type="radio" v-model="info.sex" name="sex" value="2"></label>
+				女
+			</div>
+			<div class="from-group">
+				<label>兴趣爱好</label>
+
+				<ul class="row hobby_box">
+					<li   class="col-md-3 " v-for="(hb,xb) in hobby" @click="choise(xb)" :class="{ choise:cs_a.indexOf(xb)>-1 }">$hb$</li>
+				</ul>
+			</div>
+			<div class="from-group">
+				<input type="hidden" name="hobby" v-model="hobby_ht">
+				<input  type="submit" class="btn btn-primary" value="更新"></div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	new Vue({
+		el:'.container',
+		delimiters:['$','$'],
+		data:{
+			hobby:JSON.parse('{$hobby}'),
+			info:JSON.parse('{$info}'),
+			hobby_ht:"",//传给后台
+			cs_a:[],//保存被选中的爱好
+		},
+		mounted(){
+			this.cs_a = this.info.hobby
+		},
+		methods:{
+			choise(n){
+				let wz = this.cs_a.indexOf(n)
+				if (wz > -1) {
+					// 已存在就删掉
+					this.cs_a.splice(wz,1)
+				}else{
+					this.cs_a.push(n)
+					this.hobby_ht = this.cs_a.join('|')
+					//[0,3,2]
+					//0|3|2
+				}
+				
+			}
+		}
+
+	})
+</script>
+</body>
+</html>

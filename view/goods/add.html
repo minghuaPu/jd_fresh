@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+	<link type="text/css" rel="stylesheet" href="public/static/bootstrap-vue.min.css"/>
+
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://ueditor.baidu.com/umeditor/themes/default/css/umeditor.min.css">
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src="public/static/bootstrap-vue.min.js"></script>
+	<script src="public/static/baidu_editor/umeditor.config.js""></script>
+	<script src="public/static/baidu_editor/umeditor.min.js""></script>
+</head>
+<body>
+	<!-- <form action="http://localhost/18shujia/lesson_11/index.php">
+		<input type="text" name="g_name">
+		<input type="hidden" name="action" value="save">
+		<input type="submit" value="添加商品">
+	</form> -->
+	<div class="view container">
+		<h3>商品添加</h3>
+		<b-form action="http://localhost/18shujia/lesson_11/index.php" method="post" enctype="multipart/form-data">
+			<b-form-group label="商品名称">
+				<b-form-input name="g_name"> </b-form-input>
+			</b-form-group>
+			<b-form-group label="商品价格">
+				<b-form-input name="g_price"> </b-form-input>
+			</b-form-group>
+			<b-form-group label="商品图片">
+				<b-form-file name="thumb"> </b-form-file>
+			</b-form-group>
+			<b-form-group label="商品描述">
+				 <textarea name="g_content" style="width: 100%" id="content"></textarea>
+			</b-form-group>
+			<b-form-group >
+				<input type="hidden" name="control" value="goods">
+				<input type="hidden" name="action" value="save">
+				<b-button type="submit" size="lg">保存信息 </b-button >
+			</b-form-group>
+		</b-form>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:'.view',
+		})
+		var um = UM.getEditor('content');
+	</script>
+</body>
+</html>

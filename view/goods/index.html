@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+	<link type="text/css" rel="stylesheet" href="public/static/bootstrap-vue.min.css"/>
+
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+	<script src="public/static/bootstrap-vue.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h3>商品管理</h3>
+		 <a href="http://localhost/18shujia/lesson_11/index.php?action=add" class="btn btn-primary">添加商品 </a>
+		<b-table :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" hover :items="goods_list" :fields="fields"></b-table>
+	</div>
+	<script type="text/javascript">
+		
+		new Vue({
+			el:'.container',
+			data:{
+				sortBy: 'age',
+     	 		sortDesc: false,
+				fields:[
+					{
+						key:'id',
+						sortable:true,
+					},
+					{
+						key:'g_name',
+						label:'商品名称',
+					},
+					{
+						key:'g_price',
+						label:'商品价格',
+						sortable:true,
+					}
+				],
+				goods_list:[]
+			},
+			mounted(){
+				this.$http.get('http://localhost/18shujia/lesson_11/index.php?action=getList')
+				.then((rtnData)=>{
+					this.goods_list = rtnData.data
+				})
+			}
+		})
+	</script>
+</body>
+</html>
