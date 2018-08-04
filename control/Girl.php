@@ -14,7 +14,7 @@ class Girl{
 
 	public function paitt()
 	{
-		echo '拍拖拖';
+		echo '6666';
 	}
 }
 
