@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // 子类泡妞控制器
 class Girl{
 
@@ -10,6 +10,11 @@ class Girl{
 	public function paituo()
 	{
 		echo '拍拖';
+	}
+
+	public function paitt()
+	{
+		echo '拍拖拖';
 	}
 }
 
